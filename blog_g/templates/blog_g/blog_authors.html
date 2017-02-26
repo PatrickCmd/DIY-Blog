@@ -1,0 +1,33 @@
+{% extends 'blog_g/base.html' %}
+{% load staticfiles %}
+
+{% block title %} Blog | Authors {% endblock %}
+
+
+{% block header %}
+	<h2 class="page-header">
+	    Bloggers
+	    <small>Blog Authors</small>
+	</h2>
+{% endblock %}
+
+{% block content %}
+	<!-- Blog Posts -->
+	{% if blog_authors %}
+		<ul>
+			{% for author in blog_authors %}
+		                
+				<li>
+			        <a href="{{ author.get_absolute_url }}">{{ author.name|capfirst }}</a>
+			    </li>
+			    
+			{% endfor  %}
+	    </ul>
+	{% else %}
+		<div class="alert alert-warning">
+			No Blog Authors Yet!
+		</div>
+	{% endif %}
+	<!-- End Blog Posts -->    
+
+{% endblock %}

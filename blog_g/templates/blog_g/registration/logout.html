@@ -1,0 +1,15 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Logged out" %}{% endblock %}
+
+{% block header %}
+    <h3 class="page-header">
+    	Logged Out 
+    </h3>
+
+{% endblock %}
+
+{% block content %}
+<div class="alert alert-success">{% trans "Successfully logged out" %}.</div>
+{% endblock %}

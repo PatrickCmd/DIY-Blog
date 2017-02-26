@@ -1,0 +1,41 @@
+{% extends 'blog_g/base.html' %}
+{% load staticfiles %}
+
+{% block title %} Blog | Posts {% endblock %}
+
+
+{% block header %}
+	<h2 class="page-header">
+	    All Blogs
+	    <small>By {{ user }}</small>
+	</h2>
+{% endblock %}
+
+{% block content %}
+	<!-- Blog Posts -->
+	{% if blog_posts %}
+		{% for blog in blog_posts %}
+	                
+			<h3>
+		        <a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a>
+		    </h3>
+		    <p class="lead">
+		        By <a href="{% url 'author-detail' blog.author.pk %}">{{ blog.author|capfirst }}</a>
+		    </p>
+		    <p><span class="glyphicon glyphicon-time"></span> Posted on  {{ blog.post_date }}</p>
+		    <hr>
+		    	<!--<img class="img-responsive" src="http://placehold.it/900x300" alt="">
+		    <hr>-->
+		    <p>{{ blog.description|truncatewords:50 }}</p>
+		    <a class="btn btn-primary" href="{{ blog.get_absolute_url }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+		    <hr>
+		{% endfor  %}
+	{% else %}
+		<div class="alert alert-warning">
+			No Blogs Posted Yet!
+		</div>
+	{% endif %}
+	<!-- End Blog Posts -->    
+
+{% endblock %}

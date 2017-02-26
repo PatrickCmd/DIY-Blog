@@ -1,0 +1,47 @@
+{% extends 'blog_g/base.html' %}
+{% load staticfiles %}
+
+{% block title %} Blog | Authors {% endblock %}
+
+<!-- Author -->
+{% block header %}
+    <h2 class="page-header">
+    	Author: 
+    	<small>{{ blogauthor.name|capfirst }}</small>
+    </h2>
+
+{% endblock %}
+
+{% block content %}
+	<!-- Blog Post -->	        
+
+        <!-- Bio -->
+        {% if blogauthor.bio %}
+	        <h3>BIO</h3>        
+
+	        <hr>
+
+	        <!-- Post Content -->        
+	        <p>{{ blogauthor.bio }}.</p>        
+
+	        <hr>
+	        {% endif %}
+
+        <!-- Author Blogs -->
+        <h3>Blog Lists</h3>
+        <hr>
+        {% if blogauthor.blogpost_set.all %}
+        	<ul>
+        		{% for blog in blogauthor.blogpost_set.all %}
+        			<li><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a>({{ blog.post_date }})</li>
+        		{% endfor %}
+        	</ul>
+        {% else %}
+        	<div class="alert alert-warning">Author has no blogs yet!</div>
+        {% endif %}
+
+        
+
+	<!-- End Blog Post -->    
+
+{% endblock %}
